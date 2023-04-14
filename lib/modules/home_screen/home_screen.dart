@@ -9,6 +9,7 @@ import 'package:pertemuan_v/modules/home_screen/fragments/news_fragment/news_fra
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key,
+    required User user,
     // required this.user,
   });
   // final User user;
@@ -152,7 +153,19 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).goNamed(
+                  AppRoutes.profileDetail,
+                  extra: User(
+                    id: user.id,
+                    name: "${user.name}",
+                    username: "${user.username}",
+                    email: "${user.email}",
+                    phoneNumber: "${user.phoneNumber}",
+                    profilePhoto: "${user.profilePhoto}",
+                  ),
+                );
+              },
               child: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
